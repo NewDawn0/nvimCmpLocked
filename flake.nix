@@ -13,7 +13,7 @@
       };
     };
     packages = utils.lib.eachSystem { inherit nixpkgs; } (pkgs: {
-      default = pkgs.symlinkJoin {
+      default = pkgs.buildEnv {
         name = "cmp-locked";
         paths = with pkgs.vimPlugins; [
           cmp-buffer
@@ -25,6 +25,7 @@
           nvim-cmp
           nvim-lspconfig
         ];
+        pathsToLink = [ "/share/vim-plugins" ];
       };
     });
   };

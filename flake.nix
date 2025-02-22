@@ -16,11 +16,13 @@
       default = pkgs.symlinkJoin {
         name = "cmp-locked";
         paths = with pkgs.vimPlugins; [
-          nvim-cmp
-          cmp-path
           cmp-buffer
-          luasnip
+          cmp-nvim-lsp
+          cmp-path
+          cmp_luasnip
           lspkind-nvim
+          luasnip
+          nvim-cmp
           nvim-lspconfig
         ];
       };

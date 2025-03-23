@@ -1,12 +1,9 @@
 {
   description = "Locked versions of nvim-cmp & dependencies";
 
-  inputs = {
-    utils.url = "github:NewDawn0/nixUtils";
-    nixpkgs.url = "github:nixos/nixpkgs";
-  };
+  inputs.utils.url = "github:NewDawn0/nixUtils";
 
-  outputs = { self, nixpkgs, utils, ... }: {
+  outputs = { self, utils, ... }: {
     overlays.default = final: prev: {
       vimPlugins = prev.vimPlugins // {
         cmp-buffer = self.packages.${prev.system}.cmp-buffer;
@@ -21,7 +18,7 @@
         friendly-snippets = self.packages.${prev.system}.friendly-snippets;
       };
     };
-    packages = utils.lib.eachSystem { inherit nixpkgs; } (pkgs: {
+    packages = utils.lib.eachSystem { } (pkgs: {
       cmp-buffer = pkgs.vimPlugins.cmp-buffer;
       cmp-nvim-lsp = pkgs.vimPlugins.cmp-nvim-lsp;
       cmp-path = pkgs.vimPlugins.cmp-path;
